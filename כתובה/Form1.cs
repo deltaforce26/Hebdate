@@ -1,4 +1,5 @@
 using System.ComponentModel.Design.Serialization;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace כתובה
@@ -80,7 +81,7 @@ namespace כתובה
                 ctuba.Day = comboBox_dayOfWeek.SelectedItem.ToString();
                 ctuba.DayMonth = comboBox_DayOfMonth.SelectedItem.ToString();
 
-                WriteObjectToXmlFile(ctuba);
+                //WriteObjectToXmlFile(ctuba);
 
 
                 foreach (KeyValuePair<int, string> dayInMonth in daysOfMonth)
@@ -116,6 +117,7 @@ namespace כתובה
                 }
                 ctuba.Result = $"{_day} בשבת {_dayOfMonth} לירח {_month} שנת {_year} לבריאת העולם";
                 MessageBox.Show(ctuba.Result);
+                add();
             }
             else
             {
@@ -127,14 +129,14 @@ namespace כתובה
             
 
         }
-        private static void WriteObjectToXmlFile(Model model)
-        {
-            var xmlSerializer = new XmlSerializer(typeof(Model));
-            using (var writer = new StreamWriter(@"C:\Users\97258\source\repos\כתובה\כתובה\XMLFile1.xml"))
-            {
-                xmlSerializer.Serialize(writer, model);
-            }
-        }
+        //private static void WriteObjectToXmlFile(Model model)
+        //{
+        //    var xmlSerializer = new XmlSerializer(typeof(Model));
+        //    using (var writer = new StreamWriter(@"C:\Users\97258\source\repos\כתובה\כתובה\XMLFile1.xml"))
+        //    {
+        //        xmlSerializer.Serialize(writer, model);
+        //    }
+        //}
         private bool  ifNull()
         {
             if (string.IsNullOrEmpty(comboBox_year.Text) || 
@@ -147,8 +149,40 @@ namespace כתובה
             }
             else
             {
+                
                 return true;
             }
+            
+        }
+        private void add()
+        {
+            XDocument doc = XDocument.Load(@"C:\Users\97258\source\repos\כתובה\כתובה\XMLFile1.xml");
+            if (doc == null)
+            {
+                throw new InvalidOperationException("The XML document could not be loaded.");
+            }
+            else
+            {
+                XElement? root = doc.Root;
+                if (root == null)
+                {
+                    throw new InvalidOperationException("The XML document does not have a root element.");
+                }
+                else
+                {
+                    root.Add(
+                         new XElement("query",
+                         new XElement("day", _day),
+                         new XElement("datMonth", _dayOfMonth),
+                         new XElement("month", _month),
+                         new XElement("year", _year)
+                         ));
+                    doc.Save(@"C:\Users\97258\source\repos\כתובה\כתובה\XMLFile1.xml");
+                }
+                
+            }
+            
         }
     }
 }
+
