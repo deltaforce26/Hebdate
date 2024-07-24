@@ -54,7 +54,7 @@ namespace כתובה
                 { 27, "עשרים ושבעה ימים" },
                 { 28, "עשרים ושמונה ימים" },
                 { 29, "עשרים ותשע ימים" },
-                { 30, "שלשים ימים" }
+                { 30, "יום שלשים" }
         };
         Dictionary<string, string> daysOfWeek = new Dictionary<string, string>()
         {
@@ -81,14 +81,13 @@ namespace כתובה
                 ctuba.Day = comboBox_dayOfWeek.SelectedItem.ToString();
                 ctuba.DayMonth = comboBox_DayOfMonth.SelectedItem.ToString();
 
-                //WriteObjectToXmlFile(ctuba);
-
-
+ 
                 foreach (KeyValuePair<int, string> dayInMonth in daysOfMonth)
                 {
                     if (dayInMonth.Key.ToString() == ctuba.DayMonth)
                     {
                         _dayOfMonth = dayInMonth.Value;
+                        
                     }
 
                 }
@@ -115,7 +114,11 @@ namespace כתובה
                         _month = month;
                     }
                 }
-                ctuba.Result = $"{_day} בשבת {_dayOfMonth} לירח {_month} שנת {_year} לבריאת העולם";
+                ctuba.Result = ctuba.DayMonth switch
+                {
+                    "30" => $"{_day} בשבת {_dayOfMonth} לירח {_month} שהוא ראש חודש {_month} שנת {_year} לבריאת העולם",
+                    _ => $"{_day} בשבת {_dayOfMonth} לירח {_month} שנת {_year} לבריאת העולם"
+                };
                 MessageBox.Show(ctuba.Result);
                 add();
             }
@@ -129,14 +132,7 @@ namespace כתובה
             
 
         }
-        //private static void WriteObjectToXmlFile(Model model)
-        //{
-        //    var xmlSerializer = new XmlSerializer(typeof(Model));
-        //    using (var writer = new StreamWriter(@"C:\Users\97258\source\repos\כתובה\כתובה\XMLFile1.xml"))
-        //    {
-        //        xmlSerializer.Serialize(writer, model);
-        //    }
-        //}
+        
         private bool  ifNull()
         {
             if (string.IsNullOrEmpty(comboBox_year.Text) || 
