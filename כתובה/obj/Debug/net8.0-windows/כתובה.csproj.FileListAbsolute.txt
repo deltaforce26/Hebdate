@@ -1,0 +1,16 @@
+C:\Users\97258\source\repos\כתובה\כתובה\bin\Debug\net8.0-windows\כתובה.exe
+C:\Users\97258\source\repos\כתובה\כתובה\bin\Debug\net8.0-windows\כתובה.deps.json
+C:\Users\97258\source\repos\כתובה\כתובה\bin\Debug\net8.0-windows\כתובה.runtimeconfig.json
+C:\Users\97258\source\repos\כתובה\כתובה\bin\Debug\net8.0-windows\כתובה.dll
+C:\Users\97258\source\repos\כתובה\כתובה\bin\Debug\net8.0-windows\כתובה.pdb
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.Form1.resources
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.csproj.GenerateResource.cache
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.AssemblyInfoInputs.cache
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.AssemblyInfo.cs
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.csproj.CoreCompileInputs.cache
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.dll
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\refint\כתובה.dll
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.pdb
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\כתובה.genruntimeconfig.cache
+C:\Users\97258\source\repos\כתובה\כתובה\obj\Debug\net8.0-windows\ref\כתובה.dll
