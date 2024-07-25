@@ -1,6 +1,8 @@
 using System.ComponentModel.Design.Serialization;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace כתובה
 {
@@ -10,6 +12,8 @@ namespace כתובה
         private string? _dayOfMonth;
         private string? _month;
         private string? _year;
+        private int _index;
+        private string? _nextMonth;
         Dictionary<string, string> years = new Dictionary<string, string>()
         {
                {"תשפ\"ד", "חמשת אלפים ושבע מאות שמונים וארבע"},
@@ -81,7 +85,7 @@ namespace כתובה
                 ctuba.Day = comboBox_dayOfWeek.SelectedItem.ToString();
                 ctuba.DayMonth = comboBox_DayOfMonth.SelectedItem.ToString();
 
- 
+                
                 foreach (KeyValuePair<int, string> dayInMonth in daysOfMonth)
                 {
                     if (dayInMonth.Key.ToString() == ctuba.DayMonth)
@@ -107,16 +111,12 @@ namespace כתובה
                     }
 
                 }
-                foreach (string month in months)
-                {
-                    if (month == ctuba.Month)
-                    {
-                        _month = month;
-                    }
-                }
+                int index = months.FindIndex(m => m.Contains(ctuba.Month));
+                _month = months[index];
+                _nextMonth = months[index + 1];
                 ctuba.Result = ctuba.DayMonth switch
                 {
-                    "30" => $"{_day} בשבת {_dayOfMonth} לירח {_month} שהוא ראש חודש {_month} שנת {_year} לבריאת העולם",
+                    "30" => $"{_day} בשבת {_dayOfMonth} לירח {_month} שהוא ראש חודש {_nextMonth} שנת {_year} לבריאת העולם",
                     _ => $"{_day} בשבת {_dayOfMonth} לירח {_month} שנת {_year} לבריאת העולם"
                 };
                 MessageBox.Show(ctuba.Result);
