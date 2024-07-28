@@ -3,11 +3,13 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Collections;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace כתובה
 {
     public partial class Form1 : Form
     {
+        private string _path = @"XMLFile2.xml";
         private string? _day;
         private string? _dayOfMonth;
         private string? _month;
@@ -86,34 +88,12 @@ namespace כתובה
                 ctuba.DayMonth = comboBox_DayOfMonth.SelectedItem.ToString();
 
                 
-                foreach (KeyValuePair<int, string> dayInMonth in daysOfMonth)
-                {
-                    if (dayInMonth.Key.ToString() == ctuba.DayMonth)
-                    {
-                        _dayOfMonth = dayInMonth.Value;
-                        
-                    }
-
-                }
-                foreach (KeyValuePair<string, string> year in years)
-                {
-                    if (year.Key == ctuba.Year)
-                    {
-                        _year = year.Value;
-                    }
-
-                }
-                foreach (KeyValuePair<string, string> day in daysOfWeek)
-                {
-                    if (day.Key == ctuba.Day)
-                    {
-                        _day = day.Value;
-                    }
-
-                }
                 int index = months.FindIndex(m => m.Contains(ctuba.Month));
                 _month = months[index];
                 _nextMonth = months[index + 1];
+                _year = years[ctuba.Year];
+                _day = daysOfWeek[ctuba.Day];
+                _dayOfMonth = daysOfMonth[Convert.ToInt32(ctuba.DayMonth)];
                 ctuba.Result = ctuba.DayMonth switch
                 {
                     "30" => $"{_day} בשבת {_dayOfMonth} לירח {_month} שהוא ראש חודש {_nextMonth} שנת {_year} לבריאת העולם",
@@ -152,7 +132,8 @@ namespace כתובה
         }
         private void add()
         {
-            XDocument doc = XDocument.Load(@"C:\Users\97258\source\repos\כתובה\כתובה\XMLFile1.xml");
+       
+            XDocument doc = XDocument.Load(_path);
             if (doc == null)
             {
                 throw new InvalidOperationException("The XML document could not be loaded.");
@@ -173,7 +154,7 @@ namespace כתובה
                          new XElement("month", _month),
                          new XElement("year", _year)
                          ));
-                    doc.Save(@"C:\Users\97258\source\repos\כתובה\כתובה\XMLFile1.xml");
+                    doc.Save(_path);
                 }
                 
             }
